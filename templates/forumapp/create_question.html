@@ -1,3 +1,5 @@
+{% load bootstrap %}
+
 <!doctype html>
 <html lang="en">
 
@@ -36,68 +38,13 @@
   </header>
 
   <main class="container">
-    <section class="my-3">
-      <div class="card text-center">
-        <div class="card-header">
-          Ask members
-        </div>
-        <div class="card-body">
-          <h5 class="card-title">Can’t find an answer?</h5>
-          <p class="card-text">Post your question here and forum members will answer you..</p>
-          <a href="{%url 'create_question' %}" class="btn btn-success">Ask a Question</a>
-        </div>
-      </div>
-    </section>
 
 
-    <section class="my-3">
-      <table class="table align-middle">
-
-        <thead class="table-success">
-          <tr>
-            <th>Forum</th>
-            <th>Hashtags </th>
-            <th>Auther</th>
-          </tr>
-        </thead>
-        <tbody>
-
-          {% for question in questions_list %}
-          <tr>
-            <td>
-              <a class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="{% url 'details' question.id %}"><h5 class="p-0 ">{{question.question}}</h5></a>
-              
-            </td>
-            <td>
-              {% for tag in question.tags.all %}
-              <span class=" bg-secondary-subtle text-emphasis-secondary rounded-2 p-1">#{{ tag }}</span>
-              {% endfor %}
-            </td>
-            <td><p class="fst-italic text-body-tertiary">by : {{ question.author }} | {{question.created_at | date:'Y-m-d h:i' }}</p>
-            </td>
-          </tr>
-          {% endfor %}
-
-        </tbody>
-
-
-      </table>
-    </section>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    <form class="w-50"  method="post">
+      {% csrf_token %}
+      {{ form|bootstrap }}
+      <button type="submit" class="btn btn-success my-3">Ask</button>
+    </form>
 
 
 

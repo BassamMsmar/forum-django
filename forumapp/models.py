@@ -21,7 +21,7 @@ class Answers(models.Model):
     answers = models.TextField(max_length=3000)
 
     def __str__(self):
-        return str(self.author)
+        return str(self.questions)
 
 
 
