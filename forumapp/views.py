@@ -1,8 +1,5 @@
 from django.shortcuts import render, redirect
 
-from django.views.generic import ListView
-
-
 
 from .models import Questions, Answers
 from .forms import AddQuestions, AddAnswer
@@ -12,9 +9,10 @@ from .forms import AddQuestions, AddAnswer
 
 # Create your views here.
 
-class Questions(ListView):
-    model = Questions
 
+def questions(request):
+    questions_list = Questions.objects.all()
+    return render(request, 'forumapp/questions_list.html', {'questions_list':questions_list})
 
 
 def details(request, pk):
